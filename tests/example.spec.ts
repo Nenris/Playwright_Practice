@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
 
+import { loadHomepage, assertTitle} from '../helpers'
+
 test.describe("Example.com tests", () => {
   test("Simple basic test @example", async ({ page }) => {
     await page.goto("https://www.example.com")
@@ -26,7 +28,8 @@ test.describe("Example.com tests", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("https://www.example.com")
     })
-    test("Screenshots @example", async ({ page }) => {
+
+    test("Fullpage screenshot @example", async ({ page }) => {
     await page.screenshot({ path: "screenshot.png", fullPage: true})
     })
 
@@ -72,6 +75,11 @@ test("Working with inputs", async ({ page }) => {
     const errorMessage = await page.locator(".alert-error")
     await expect (errorMessage).toContainText("Login and/or password are wrong.")
     })
+
+test("CustomHelpers", async ({ page }) => {
+    await loadHomepage(page)
+    await assertTitle(page)
+})
 
 test("", async ({ page }) => {
 })
