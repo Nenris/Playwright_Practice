@@ -1,0 +1,23 @@
+{
+  "name": "playwright_tests",
+  "version": "1.0.0",
+  "description": "Automated Software Testing with Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nenris/Playwright_Practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nenris/Playwright_Practice/issues"
+  },
+  "homepage": "https://github.com/Nenris/Playwright_Practice#readme",
+  "dependencies": {
+    "@playwright/test": "^1.54.2",
+    "prettier": "^3.6.2"
+  }
+}
