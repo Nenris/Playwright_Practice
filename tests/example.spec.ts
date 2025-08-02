@@ -20,21 +20,22 @@ test.describe("Example.com tests", () => {
     const nonExistingElement = await page.locator('h5')
     await expect(nonExistingElement).not.toBeVisible()
     })
+  })
 
+  test.describe("Hooks", () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto("https://www.example.com")
+    })
     test("Screenshots @example", async ({ page }) => {
-    await page.goto("https://www.example.com")
     await page.screenshot({ path: "screenshot.png", fullPage: true})
     })
 
     test("Single element screenshot @example", async ({ page }) => {
-      await page.goto("https://www.example.com")
       const element = await page.$('h1')
       if (!element) throw new Error('Элемент <h1> не найден!');
       await element.screenshot({ path: "single_element_screenshot.png" })
     })
   })
-
-
 
 test("Clicking on Elements", async ({ page }) => {
     await page.goto("http://zero.webappsecurity.com/index.html")
@@ -71,12 +72,6 @@ test("Working with inputs", async ({ page }) => {
     const errorMessage = await page.locator(".alert-error")
     await expect (errorMessage).toContainText("Login and/or password are wrong.")
     })
-
-
-
-test("Screenshots", async ({ page }) => {
-
-})
 
 test("", async ({ page }) => {
 })
