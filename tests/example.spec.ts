@@ -20,6 +20,18 @@ test.describe("Example.com tests", () => {
     const nonExistingElement = await page.locator('h5')
     await expect(nonExistingElement).not.toBeVisible()
     })
+
+    test("Screenshots @example", async ({ page }) => {
+    await page.goto("https://www.example.com")
+    await page.screenshot({ path: "screenshot.png", fullPage: true})
+    })
+
+    test("Single element screenshot @example", async ({ page }) => {
+      await page.goto("https://www.example.com")
+      const element = await page.$('h1')
+      if (!element) throw new Error('Элемент <h1> не найден!');
+      await element.screenshot({ path: "single_element_screenshot.png" })
+    })
   })
 
 
@@ -61,6 +73,10 @@ test("Working with inputs", async ({ page }) => {
     })
 
 
+
+test("Screenshots", async ({ page }) => {
+
+})
 
 test("", async ({ page }) => {
 })
