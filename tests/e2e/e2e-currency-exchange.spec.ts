@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.describe.only("Currency Exchange", () => {
+test.describe("Currency Exchange", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('http://zero.webappsecurity.com/index.html')
         await page.click('#signin_button')
@@ -21,6 +21,7 @@ test.describe.only("Currency Exchange", () => {
         await expect(conversionAmount).toContainText('360.70 euro (EUR) = 500.00 U.S. dollar (USD)')
         await page.click('#purchase_cash')
         const successMessage = page.locator('#alert_content')
+        await expect(successMessage).toBeVisible()
         await expect(successMessage).toContainText('Foreign currency cash was successfully purchased.')
     })
 })
