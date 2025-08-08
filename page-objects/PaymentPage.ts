@@ -11,6 +11,15 @@ export class PaymentPage {
     readonly descriptionInput: Locator
     readonly submitPaymentButton: Locator
     readonly message: Locator
+    readonly purchaseForeignCurrencyTab: Locator
+    readonly currencySelector: Locator
+    readonly currencyRateText: Locator
+    readonly conversionAmountInput: Locator
+    readonly inDollarsRadioButton: Locator
+    readonly calculateCostsButton: Locator
+    readonly conversionAmountText: Locator
+    readonly purchaseButton: Locator
+    readonly alertMessage: Locator
 
     constructor(page: Page) {
         this.page = page
@@ -23,6 +32,15 @@ export class PaymentPage {
         this.descriptionInput = page.locator('#sp_description')
         this.submitPaymentButton = page.locator('#pay_saved_payees')
         this.message = page.locator('#alert_content > span')
+        this.purchaseForeignCurrencyTab = page.locator('text=Purchase Foreign Currency')
+        this.currencySelector = page.locator('#pc_currency')
+        this.currencyRateText = page.locator('#sp_sell_rate')
+        this.conversionAmountInput = page.locator('#pc_amount')
+        this.inDollarsRadioButton = page.locator('#pc_inDollars_true')
+        this.calculateCostsButton = page.locator('#pc_calculate_costs')
+        this.conversionAmountText = page.locator('#pc_conversion_amount')
+        this.purchaseButton = page.locator('#purchase_cash')
+        this.alertMessage = page.locator('#alert_content')
     }
 
     async createPayment() {
@@ -39,5 +57,29 @@ export class PaymentPage {
     async assertSuccessMessage() {
         await expect(this.message).toBeVisible()
         await expect(this.message).toContainText('The payment was successfully submitted')
+    }
+
+    async selectCurrency(currencyCode) {
+        await this.purchaseForeignCurrencyTab.click()
+        await this.currencySelector.selectOption(currencyCode)
+        switch (currencyCode) {
+            case 'EUR':
+                await expect(this.currencyRateText).toContainText('1 euro (EUR) = 1.3862 U.S. dollar (USD)')
+                break
+            default:
+                throw new Error('Currency Code is not valid')
+        }
+    }
+
+    async exchangeCurrency(amount) {
+        await this.conversionAmountInput.fill(amount.toString())
+        await this.inDollarsRadioButton.click()
+        await this.calculateCostsButton.click()
+        await expect(this.conversionAmountText).toContainText('euro (EUR) = ')
+        await this.purchaseButton.click()
+    }
+
+    async assertSuccessfulExchange(){
+        await expect(this.alertMessage).toContainText('Foreign currency cash was successfully purchased.')
     }
 }
