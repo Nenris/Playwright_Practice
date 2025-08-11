@@ -2,3 +2,9 @@ screenshot.png
 single_element_screenshot.png
 test-results
 test-results/.last-run.json
+tests/visual/login-visual.spec.ts-snapshots/error-message-Chromium-win32.png
+tests/visual/login-visual.spec.ts-snapshots/login-form-Chromium-win32.png
+tests/visual/visual.spec.ts-snapshots/homepage-Chromium-win32.png
+tests/visual/visual.spec.ts-snapshots/homepage-Firefox-win32.png
+tests/visual/visual.spec.ts-snapshots/homepage-Webkit-win32.png
+tests/visual/visual.spec.ts-snapshots/page-title-Chromium-win32.png
