@@ -7,7 +7,7 @@ test.describe.parallel("API Testing", () => {
     test("Simple API Test - Assert Response Status", async ({ request }) => {
         const response = await request.get(`${baseUrl}/users/2`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             }            
         })
         expect(response.status()).toBe(200)
@@ -18,7 +18,7 @@ test.describe.parallel("API Testing", () => {
     test("Simple API Test - Assert Invalid Endpoint", async ({ request }) => {
         const response = await request.get(`${baseUrl}/users/non-existing-endpoint`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             }            
         })
         expect(response.status()).toBe(404)
@@ -27,7 +27,7 @@ test.describe.parallel("API Testing", () => {
     test("GET Request - Get user detail", async ({ request }) => {
         const response = await request.get(`${baseUrl}/users/1`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             }            
         })
         const responseBody = JSON.parse(await response.text())
@@ -42,7 +42,7 @@ test.describe.parallel("API Testing", () => {
         test("POST Request - Create New User", async ({ request }) => {
         const response = await request.post(`${baseUrl}/users`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             },
             data: {
                 id: 1000,
@@ -57,7 +57,7 @@ test.describe.parallel("API Testing", () => {
     test("POST Request - Login", async ({ request }) => {
         const response = await request.post(`${baseUrl}/login`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             },
             data: {
                 email: 'eve.holt@reqres.in',
@@ -72,7 +72,7 @@ test.describe.parallel("API Testing", () => {
     test("POST Request - Login Fail", async ({ request }) => {
         const response = await request.post(`${baseUrl}/login`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             },
             data: {
                 email: 'eve.holt@reqres.in'
@@ -86,7 +86,7 @@ test.describe.parallel("API Testing", () => {
     test("PUT Request - Update User", async ({ request }) => {
         const response = await request.put(`${baseUrl}/users/2`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             },
             data: {
                 name: 'new name',
@@ -103,7 +103,7 @@ test.describe.parallel("API Testing", () => {
     test("DELETE Request - Update User", async ({ request }) => {
         const response = await request.delete(`${baseUrl}/users/2`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': ApiKey
             }    
         })
         expect(response.status()).toBe(204)
