@@ -14,7 +14,8 @@
     "tests:visual:chrome:update": "playwrigth test --config=visual.config.ts --project=Chromium --update-snapshots",
     "tests:visual:firefox:update": "playwrigth test --config=visual.config.ts --project=Firefox --update-snapshots",
     "tests:visual:webkit:update": "playwrigth test --config=visual.config.ts --project=Webkit --update-snapshots",
-    "tests:api": "playwright test --config=api.config.ts --project=Chromium"
+    "tests:api": "playwright test --config=api.config.ts --project=Chromium --reporter=list",
+    "jenkins-server": "java -jar jenkins.war --httpPort=8080 --enable-future-java"
   },
   "repository": {
     "type": "git",
